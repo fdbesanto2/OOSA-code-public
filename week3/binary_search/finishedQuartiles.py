@@ -21,19 +21,24 @@ class dataSorter(object):
     self.wage,self.age=np.loadtxt(filename,delimiter=',',usecols=(0,1),unpack=True,dtype=float,comments="#")
     self.doneSort=False   # a flag to say if we have sorted yet or not
 
+
   def sortData(self):
     '''An unfinished sort array'''
     self.sortedWage=np.sort(self.wage)
     self.doneSort=True
 
+
   def findQuartile(self,thisW):
     '''Find a quartile of percentage q'''
+
     # if not already sorted, then sort
     if(self.doneSort==False):
       self.sortData()
+
     # binary search
     w,thisQ=binarySearch(self.sortedWage,thisW)  # loop
     #w,thisQ=binaryRecurse(self.sortedWage,thisW,0,self.sortedWage.shape[0])  # recursion
+
     return((thisQ/self.sortedWage.shape[0])*100)
 
 
