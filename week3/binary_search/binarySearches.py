@@ -9,7 +9,7 @@ by loop and by recursion
 
 def setMidP(start,end):
   '''sets the mid point from the start and end'''
-  return((start-end)//2)   # note that "//" is an integer division
+  return((start-end)//2+start)   # note that "//" is an integer division
 
 
 #############################################
@@ -57,4 +57,21 @@ def binaryRecurse(x,v,start,end):
     return(thisVal,ind)
 
   return(thisVal,ind)
+
+
+###################################
+
+if __name__=="__main__":
+  '''Main block'''
+  import numpy as np
+
+  jimlad=np.random.random((1000))
+
+  # recursion
+  thisVal,ind=binaryRecurse(jimlad,0.3,0,jimlad.shape[0])
+  print("Recursion",thisVal,ind)
+
+  # loop
+  thisVal,ind=binarySearch(jimlad,0.3)
+  print("While loop",thisVal,ind)
 
