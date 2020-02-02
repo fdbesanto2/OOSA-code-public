@@ -19,10 +19,11 @@ class lvisData(object):
   def __init__(self,filename,setElev=False,minX=-100000000,maxX=100000000,minY=-1000000000,maxY=100000000,onlyBounds=False):
     '''
     Class initialiser. Calls a function
-    to read "nRead" waveforms, starting 
-    at "sInd" from the file, filename
+    to read LVIS data within bounds
+    minX,minY and maxX,maxY
     setElev=1 converts LVIS's stop and start
     elevations to arrays of elevation.
+    onlyBounds sets "bounds" to the corner of the area of interest
     '''
     # call the file reader and load in to the self
     self.readLVIS(filename,minX,minY,maxX,maxY,onlyBounds)
