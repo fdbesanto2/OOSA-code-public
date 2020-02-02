@@ -10,7 +10,6 @@ SH 2019-02-01
 import argparse
 import numpy as np
 from perpendicular_distance import perp_dist   # James' line distance
-from pyproj import Proj, transform
 
 # to allow it to import week 3's work, add the week 3 folder to your PYTHONPATH
 import sys
