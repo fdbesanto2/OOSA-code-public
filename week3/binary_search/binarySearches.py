@@ -9,7 +9,7 @@ by loop and by recursion
 
 def setMidP(start,end):
   '''sets the mid point from the start and end'''
-  return(start+(end-start)//2)   # note that "//" is an integer division
+  return((start+end)//2)   # note that "//" is an integer division
 
 
 #############################################
