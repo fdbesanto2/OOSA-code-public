@@ -54,11 +54,17 @@ class lvisGround(lvisData):
   def CofG(self):
     '''
     Find centre of gravity of denoised waveforms
+    sets this to an array of ground elevation
+    estimates, zG
     '''
 
-    from sys import exit
-    print("CofG function not finished. Use online resources to finish")
-    exit()
+    # allocate space and put no data flags
+    self.zG=np.full((self.nWaves),-999.0)
+
+    # loop over waveforms
+    for i in range(0,self.nWaves):
+      if(np.sum(self.denoised[i])>0.0):   # avoid empty waveforms (clouds etc)
+        self.zG[i]=np.average(self.z[i],weights=self.denoised[i])
 
 
   #######################################################

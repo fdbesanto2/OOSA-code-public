@@ -11,8 +11,8 @@ from processLVIS import lvisGround
 if __name__=="__main__":
   '''Main block'''
 
-  filename='/geos/netdata/avtrain/data/3d/oosa/week4/lvis_antarctica/ILVIS1B_AQ2015_1014_R1605_070717.h5'
-  #filename='/Users/dill/data/teaching/oosa/week4/lvis/ILVIS1B_AQ2015_1014_R1605_071915.h5'
+  #filename='/geos/netdata/avtrain/data/3d/oosa/week4/lvis_antarctica/ILVIS1B_AQ2015_1014_R1605_070717.h5'
+  filename='/Users/dill/data/teaching/oosa/week4/lvis/ILVIS1B_AQ2015_1014_R1605_071915.h5'
 
   # find bounds
   b=lvisGround(filename,onlyBounds=True)
@@ -20,8 +20,8 @@ if __name__=="__main__":
   # set some bounds
   x0=b.bounds[0]
   y0=b.bounds[1]
-  x1=(b.bounds[2]-b.bounds[0])/15+b.bounds[0]
-  y1=(b.bounds[3]-b.bounds[1])/15+b.bounds[1]
+  x1=(b.bounds[2]-b.bounds[0])/20+b.bounds[0]
+  y1=(b.bounds[3]-b.bounds[1])/20+b.bounds[1]
 
 
   # read in bounds
@@ -36,5 +36,5 @@ if __name__=="__main__":
   lvis.denoise(threshold)
 
   # find the ground
-  #lvis.estimateGround()
+  lvis.estimateGround()
 
