@@ -64,7 +64,11 @@ if __name__=="__main__":
   '''Main block'''
   import numpy as np
 
+  # generate an array
   jimlad=np.random.random((1000))
+
+  # sort the array
+  jimlad=np.sort(jimlad)
 
   # recursion
   thisVal,ind=binaryRecurse(jimlad,0.3,0,jimlad.shape[0])
