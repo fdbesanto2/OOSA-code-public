@@ -62,6 +62,7 @@ if __name__=="__main__":
 
   # write to a shapefile
   reproj_df.to_file(driver='ESRI Shapefile',filename=outName)
+  print('Written to',outName,'in',t_crs)
 
   # NOTE: only the 'geometry' column has been reprojected, not the 'x' and 'y' arrays
 
