@@ -33,5 +33,3 @@ if __name__=="__main__":
   # bounds
   print("x bounds",sortedData['x'].min(),sortedData['x'].max())
 
-  # possible continuation   https://gist.github.com/nygeog/2731427a74ed66ca0e420eaa7bcd0d2b
-

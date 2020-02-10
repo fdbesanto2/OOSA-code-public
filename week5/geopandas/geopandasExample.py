@@ -44,8 +44,12 @@ if __name__=="__main__":
   # read the file in to pandas dataframe
   df=pd.read_csv(inName)
 
-  # set up input projection as a dictionary
+  # sort by the time column
+  sortedData=data.sort_values('time')
+
+  # set up input and output projection as a dictionary
   s_crs={'init':'epsg:'+str(inEPSG)}
+  t_crs={'init':'epsg:'+str(outEPSG)}
 
   # need to tell geopandas what the geometry of the data is
   geometry=[Point(xy) for xy in zip(df.x,df.y)]
@@ -53,11 +57,10 @@ if __name__=="__main__":
   # put data in to geopandas dataframe
   geo_df=gp.GeoDataFrame(df,crs=s_crs,geometry=geometry)
 
-  # check input projectionb
+  # check input projection
   print("Input projection is",geo_df.crs)
 
   # reproject
-  t_crs={'init':'epsg:'+str(outEPSG)}
   reproj_df=geo_df.to_crs(t_crs)
 
   # write to a shapefile
