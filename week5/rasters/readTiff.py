@@ -62,7 +62,7 @@ class tiffHandle():
 
   #################################################
 
-  def coarsenRes(self):
+  def coarsenRes(self,coarsen):
     '''Coarsen resolution'''
 
     # adjust resolution of header parameters
