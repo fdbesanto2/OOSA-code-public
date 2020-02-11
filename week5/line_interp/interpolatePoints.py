@@ -62,7 +62,7 @@ def interpolateLine(points,rast):
     dt=points.time[i+1]-points.time[i]
     dist=sqrt(dx**2+dy**2)
 
-    # determine direction
+    # determine direction, to help us increment
     if(dx<0):
       dirX=-1
     else:
@@ -72,21 +72,21 @@ def interpolateLine(points,rast):
     else:
       dirY=1
 
-    # line parameters
+    # line equation parameters
     m=dy/dx
     c=points.y[i]-m*points.x[i]
 
     # how many pixels does this cross in x and y?
     nXint=int(abs(dx)/rast.res)
     nYint=int(abs(dy)/rast.res)
-    if(nXint<0):
+    if(nXint<0):  # do at least one point per segment
       nXint=1
     if(nYint<0):
       nYint=1
 
     # loop over x pixel crossings
     for j in range(0,nXint):
-      # x pixel crossing point
+      # pixel crossing point
       thisX=points.x[i]+dirX*j*rast.res
       thisY=m*thisX+c
       thisT=points.time[i]+(j/nXint)*dt
@@ -97,7 +97,7 @@ def interpolateLine(points,rast):
 
     # loop over y pixel crossings
     for j in range(0,nYint):
-      # x pixel crossing point
+      # pixel crossing point
       thisY=points.y[i]+dirY*j*rast.res
       thisX=(thisY-c)/m
       thisT=points.time[i]+(j/nYint)*dt
@@ -106,10 +106,10 @@ def interpolateLine(points,rast):
       y.append(thisY)
       t.append(thisT)
     
-  # copy lists in to pandas array
+  # copy lists in to a new pandas array
   interpData=pd.DataFrame({'x':x,'y':y,'time':t})
 
-  # sort it again
+  # sort it again, as x and y crossings will be out of order
   interpData=interpData.sort_values('time').reset_index(drop=True)
 
   return(interpData)
