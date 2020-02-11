@@ -110,7 +110,7 @@ def interpolateLine(points,rast):
   interpData=pd.DataFrame({'x':x,'y':y,'time':t})
 
   # sort it again
-  interpData=interpData.sort_values('time')
+  interpData=interpData.sort_values('time').reset_index(drop=True)
 
   return(interpData)
 
@@ -134,7 +134,7 @@ if __name__=="__main__":
   data=pd.read_csv(filename)
 
   # sort by the time column
-  sortedData=data.sort_values('time')
+  sortedData=data.sort_values('time').reset_index(drop=True)
 
   # reproject to OSNG in metres, to help intersect with the raster
   inProj=Proj(init="epsg:4326")

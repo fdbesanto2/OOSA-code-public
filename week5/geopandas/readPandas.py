@@ -22,7 +22,7 @@ if __name__=="__main__":
   data=pd.read_csv(filename)
 
   # sort by the time column
-  sortedData=data.sort_values('time')
+  sortedData=data.sort_values('time').reset_index(drop=True)
 
   # print out the columns
   print(sortedData.columns)

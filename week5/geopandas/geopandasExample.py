@@ -45,7 +45,7 @@ if __name__=="__main__":
   df=pd.read_csv(inName)
 
   # sort by the time column
-  sortedData=data.sort_values('time')
+  sortedData=df.sort_values('time').reset_index(drop=True)
 
   # set up input and output projection as a dictionary
   s_crs={'init':'epsg:'+str(inEPSG)}
