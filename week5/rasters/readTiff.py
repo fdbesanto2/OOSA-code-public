@@ -20,7 +20,7 @@ def readCommands():
   Read commandline arguments
   '''
   p = argparse.ArgumentParser(description=("Handle a set of points in geopandas"))
-  p.add_argument("--input", dest ="inName", type=str, default='/Users/dill/data/bess/maps/roughClass.LT.tif', help=("Input filename"))
+  p.add_argument("--input", dest ="inName", type=str, default='/geos/netdata/avtrain/data/3d/oosa/week5/raster/roughClass.LT.tif', help=("Input filename"))
   p.add_argument("--output", dest ="outName", type=str, default='data.tif', help=("Output filename"))
   p.add_argument("--coarsen", dest ="coarsen", type=int, default=1, help=("Factor to coarsen resolution by"))
   cmdargs = p.parse_args()
