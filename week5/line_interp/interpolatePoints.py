@@ -84,28 +84,23 @@ def interpolateLine(points,rast):
     if(nYint<0):
       nYint=1
 
-    # loop over x pixel crossings
-    for j in range(0,nXint):
-      # pixel crossing point
-      thisX=points.x[i]+dirX*j*rast.res
-      thisY=m*thisX+c
-      thisT=points.time[i]+(j/nXint)*dt
-      # add to list
-      x.append(thisX)
-      y.append(thisY)
-      t.append(thisT)
 
-    # loop over y pixel crossings
-    for j in range(0,nYint):
-      # pixel crossing point
-      thisY=points.y[i]+dirY*j*rast.res
-      thisX=(thisY-c)/m
-      thisT=points.time[i]+(j/nYint)*dt
-      # add to list
-      x.append(thisX)
-      y.append(thisY)
-      t.append(thisT)
-    
+    # x pixel crossings
+    thisX=np.arange(0,dx,dirX*rast.res)+points.x[i]
+    thisY=m*thisX+c
+    thisT=points.time[i]+dt*(thisX-points.x[i])/dx
+    x.extend(thisX)
+    y.extend(thisY)
+    t.extend(thisT)
+
+    # y pixel crossings
+    thisY=np.arange(0,dy,dirY*rast.res)+points.y[i]
+    thisX=(thisY-c)/m
+    thisT=points.time[i]+dt*(thisY-points.y[i])/dy
+    x.extend(thisX)
+    y.extend(thisY)
+    t.extend(thisT)
+
   # copy lists in to a new pandas array
   interpData=pd.DataFrame({'x':x,'y':y,'time':t})
 
