@@ -34,7 +34,11 @@ class rasterMaths(tiffHandle):
     self.resist= np.where(self.data == 10, 0.25, \
     np.where(self.data == 20, 0.75, \
     np.where(self.data == 30, 20.0, \
-    np.where(self.data == 40, 2.0, 0))))
+    np.where(self.data == 0, -999.0, \
+    np.where(self.data == 40, 2.0, 0)))))
+
+    # overwrite
+    self.data=self.resist
 
 
   ###########################
@@ -58,9 +62,6 @@ if __name__=="__main__":
 
   # calculate resistance
   tiff.convertResist()
-
-  # overwrite data
-  tiff.data=tiff.resist
 
   # write geotiff
   tiff.writeTiff('resistance.LT.tif')
