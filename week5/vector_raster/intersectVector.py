@@ -112,7 +112,9 @@ class vectorSquirrel():
     # add up track, if any is contained
     if(len(useInd)>0):
       useInd=useInd[0]
-      self.trackResist=np.sum(tiff.resist[xInd[useInd]][yInd[useInd]])
+      #tempArr=np.ndarray.flatten(tiff.resist[xInd[useInd]][yInd[useInd]])
+      #tempArr[tempArr<0]=0.0
+      self.trackResist=np.sum(tiff.resist[xInd[useInd]][yInd[useInd]])/len(xInd)
 
 
 
